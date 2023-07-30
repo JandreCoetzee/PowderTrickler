@@ -9,7 +9,7 @@
 #define TFT_CS  53
 #define TFT_RST 50
 
-#define EN_PIN           38 // Enable
+#define EN_PIN           13 // Enable
 #define DIR_PIN          12 // Direction
 #define STEP_PIN         14 // Step
 #define CS_PIN           42 // Chip select
@@ -133,6 +133,7 @@ SERIAL_PORT.begin(9600);
 //driver.en_pwm_mode(true);       // Toggle stealthChop on TMC2130/2160/5130/5160
 //driver.en_spreadCycle(false);   // Toggle spreadCycle on TMC2208/2209/2224
   driver.pwm_autoscale(true);     // Needed for stealthChop
+  stepper.enableOutputs();
 }
 
 bool shaft = false;
