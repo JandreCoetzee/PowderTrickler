@@ -3,36 +3,18 @@
 #include "DFRobot_GDL.h"
 #include "DFRobot_Touch.h"
 
-#if defined ARDUINO_SAM_ZERO
-#define TFT_DC  7
-#define TFT_CS  5
-#define TFT_RST 6
-/*ESP32 and ESP8266*/
-#elif defined(ESP32) || defined(ESP8266)
-#define TFT_DC  D2
-#define TFT_CS  D6
-#define TFT_RST D3
-/* AVR series mainboard */
-#else
-#define TFT_DC  2
-#define TFT_CS  3
-#define TFT_RST 4
-#endif
+#define TFT_DC  8
+#define TFT_CS  53
+#define TFT_RST 50
 
-/**
-   @brief Constructor  When the touch uses the gt series chip, you can call this constructor
-*/
 DFRobot_Touch_GT911 touch;
 
 /**
-   @brief Constructor When the screen uses hardware SPI communication, the driver IC is st7789, and the screen resolution is 240x320, this constructor can be called
    @param dc Command/data line pin for SPI communication
    @param cs Chip select pin for SPI communication
    @param rst Reset pin of the screen
 */
 DFRobot_ILI9488_320x480_HW_SPI screen(/*dc=*/TFT_DC,/*cs=*/TFT_CS,/*rst=*/TFT_RST);
-/* M0 mainboard DMA transfer */
-//DFRobot_ILI9488_320x480_HW_SPI screen(/*dc=*/TFT_DC,/*cs=*/TFT_CS,/*rst=*/TFT_RST);
 
 
 /**
@@ -41,6 +23,7 @@ DFRobot_ILI9488_320x480_HW_SPI screen(/*dc=*/TFT_DC,/*cs=*/TFT_CS,/*rst=*/TFT_RS
    @param touch Touch object
 */
 DFRobot_UI ui(&screen, &touch);
+
 //Callback function for three buttons
 void btnCallback(DFRobot_UI::sButton_t &btn,DFRobot_UI::sTextBox_t &obj) {
    String text((char *)btn.text);
